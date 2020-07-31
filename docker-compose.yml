@@ -1,0 +1,45 @@
+version: "3.7"
+
+services:
+  # Server MYSQL
+  mysql-dev:
+    image: mysql:5.7
+    environment:
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - dwv_dev
+
+  # Mysql Test
+  mysql-test:
+    image: mysql:5.7
+    env_file:
+      - .env.testing
+    ports:
+      - 3307:3306
+    volumes:
+      - mysql_test_data:/var/lib/mysql
+    networks:
+      - dwv_dev
+
+  # Redis Server
+  redis-dev:
+    image: redis:alpine
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+    ports:
+      - 6379:6379
+    networks:
+      - dwv_dev
+
+volumes:
+  mysql_data:
+  mysql_test_data:
+
+networks:
+  dwv_dev:
+    driver: bridge
