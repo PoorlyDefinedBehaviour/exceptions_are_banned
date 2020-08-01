@@ -1,3 +1,3 @@
-import "reflect-metadata"
+import { startServer } from "./presentation/web/server"
 
-console.log("hello world")
+startServer()

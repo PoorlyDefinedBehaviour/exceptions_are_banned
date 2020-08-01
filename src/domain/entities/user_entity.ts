@@ -11,11 +11,12 @@ export class User {
   public readonly cpf: string
   public readonly username: string
   public readonly email: string
-  public readonly displayName: string
   public readonly country: string
   public readonly gender: Gender
 
   constructor(data: Omit<User, "id">) {
     Object.assign(this, data)
+
+    // @TODO: generate id
   }
 }

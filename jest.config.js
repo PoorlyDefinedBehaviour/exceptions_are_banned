@@ -12,6 +12,6 @@ module.exports = {
   coveragePathIgnorePatterns: ["/node_modules/"],
   moduleFileExtensions: ["ts", "js", , "json", "node"],
   moduleDirectories: ["node_modules", "src"],
-  verbose: false,
+  verbose: true,
   silent: false,
 }
